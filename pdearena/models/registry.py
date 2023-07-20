@@ -9,6 +9,18 @@ from pdearena.modules.twod_resnet import (
 )
 
 MODEL_REGISTRY = {
+    "FNO-v2-128-32m": {
+        "class_path": "pdearena.modules.twod_fno.FNO2D",
+        "init_args": {
+            "n_modes_width": 32,
+            "n_modes_height": 32,
+            "lifting_channels": 256,
+            "projection_channels": 256,
+            "n_layers": 4,
+            "hidden_channels": 128,
+            "use_mlp": False
+        }
+    }
     "FNO-128-8m": {
         "class_path": "pdearena.modules.twod_resnet.ResNet",
         "init_args": {

@@ -27,7 +27,6 @@ class FNO2D(nn.Module):
         hidden_channels: Number of channels in FNO
         use_mlp: Whether to use an MLP layer after each FNO block
     """
-    padding = 9
 
     def __init__(
         self,
@@ -58,9 +57,10 @@ class FNO2D(nn.Module):
         self.outsize_step = self.n_output_scalar_components + self.n_output_vector_components * 2
         self.outsize = time_future * self.outsize_step        
 
+        # 2 * modes because `neuralop` package defines modes differently
         self.FNO = FNO2d(
-                n_modes_height = n_modes_height,
-                n_modes_width = n_modes_width,
+                n_modes_height = 2 * n_modes_height,
+                n_modes_width = 2 * n_modes_width,
                 hidden_channels = hidden_channels,
                 in_channels = self.insize, 
                 out_channels = self.outsize,
